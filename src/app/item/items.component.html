@@ -1,0 +1,13 @@
+<ActionBar title="{{ 'greeting' | i18next }}"></ActionBar>
+
+<StackLayout>
+
+    <Label text="{{ 'greeting' | i18next }}"></Label>
+
+    <Button text="en" (tap)="changeLang('en')"></Button>
+    <Button text="fr" (tap)="changeLang('fr')"></Button>
+    <Button text="nl" (tap)="changeLang('nl')"></Button>
+
+    <Button text="add nl" (tap)="addLang('nl')"></Button>
+
+</StackLayout>
