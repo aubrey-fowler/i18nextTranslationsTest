@@ -1,7 +1,4 @@
 import { Component, OnInit, Inject } from "@angular/core";
-
-import { Item } from "./item";
-import { ItemService } from "./item.service";
 import { ITranslationService, I18NEXT_SERVICE } from "angular-i18next";
 
 @Component({
@@ -10,29 +7,31 @@ import { ITranslationService, I18NEXT_SERVICE } from "angular-i18next";
 })
 export class ItemsComponent implements OnInit {
 
-    items: Array<Item>;
-
-    constructor(private itemService: ItemService, @Inject(I18NEXT_SERVICE) private i18NextService: ITranslationService) {
+    constructor(@Inject(I18NEXT_SERVICE) private i18NextService: ITranslationService) {
 
         this.i18NextService.events.languageChanged.subscribe(lang => {
             // do something
-            console.log(' i18NextService ', lang);
+            console.log(' i18NextService ', lang); //this code is called
         });
 
     }
 
     ngOnInit(): void {
-        this.items = this.itemService.getItems();
+        //
     }
 
     changeLang(lang: string) {
         this.i18NextService.changeLanguage(lang);
+        console.log(this.i18NextService.language);
     }
 
-    addLang(lang: string) {
-        this.i18NextService.addResourceBundle(lang, 'translation', {
+    addLang() {
+
+        this.i18NextService.addResourceBundle('nl', 'translation', {
             "greeting": "Hej"
-        }, true, false);
+        }, true, true);
+
+        console.log(this.i18NextService.languages);
     }
 
 }
